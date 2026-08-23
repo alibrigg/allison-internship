@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import "./HotCollections.css";
 
 const NewItems = () => {
   const [collections, setCollections] = useState([]);
@@ -149,7 +150,24 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+ {loading ? (
+   <div className="skeleton__collections">
+    {[1, 2, 3, 4].map((item) => (
+      <div className="skeleton__card" key={item}>
+        <div className="skeleton skeleton__image"></div>
 
+        <div className="skeleton__profile-wrapper">
+          <div className="skeleton skeleton__profile"></div>
+        </div>
+
+        <div className="skeleton skeleton__title"></div>
+        <div className="skeleton skeleton__text"></div>
+        <div className="skeleton skeleton__text skeleton__text--small"></div>
+      </div>
+    ))}
+  </div>
+) : (
+  <div className="new-items__slider">
           <Slider {...settings}>
   {collections.map((data, index) => {
     const timeRemaining = data.expiryDate
@@ -158,9 +176,10 @@ const NewItems = () => {
 
     return (
       <div key={index}>
+       
         <div className="nft__item">
 
-          {/* Only shows if expiryDate exists */}
+
           {timeRemaining && (
             <div className="de_countdown">
               <span className="timer__hours">
@@ -207,10 +226,12 @@ const NewItems = () => {
     );
   })}
 </Slider>
+</div>
+)}
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default NewItems;
