@@ -59,7 +59,7 @@ const TopSellers = () => {
     : collections.map((data, index) => (
         <li key={index}>
           <div className="author_list_pp">
-            <Link to="/author">
+            <Link to={`/author/${data.authorId}`} data-bs-toggle="tooltip" data-bs-placement="top" > 
               <img
                 className="lazy pp-author"
                 src={data.authorImage}

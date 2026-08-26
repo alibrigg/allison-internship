@@ -130,7 +130,7 @@ function SamplePrevArrow(props) {
           </div>
 
           <div className="nft_coll_pp">
-            <Link to="/author">
+            <Link to={`/author/${data.authorId}`} data-bs-toggle="tooltip" data-bs-placement="top" > 
               <img
                 className="lazy pp-coll"
                 src={data.authorImage}

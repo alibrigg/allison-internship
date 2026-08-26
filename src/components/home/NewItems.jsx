@@ -3,7 +3,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import SellerCards from "../UI/SellerCards";
-import "./HotCollections.css";
 
 const NewItems = () => {
   const [collections, setCollections] = useState([]);
