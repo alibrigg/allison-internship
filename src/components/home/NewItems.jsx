@@ -155,7 +155,23 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+{loading ? (
+  <div className="skeleton__collections">
+    {[1, 2, 3, 4].map((item) => (
+      <div className="skeleton__card" key={item}>
+        <div className="skeleton skeleton__image"></div>
 
+        <div className="skeleton__profile-wrapper">
+          <div className="skeleton skeleton__profile"></div>
+        </div>
+
+        <div className="skeleton skeleton__title"></div>
+        <div className="skeleton skeleton__text"></div>
+        <div className="skeleton skeleton__text skeleton__text--small"></div>
+      </div>
+    ))}
+  </div>
+) : (
           <Slider {...settings}>
   {collections.map((data, index) => {
     const timeRemaining = data.expiryDate
@@ -213,6 +229,7 @@ const NewItems = () => {
     );
   })}
 </Slider>
+)}
         </div>
       </div>
     </section>

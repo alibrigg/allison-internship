@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import AuthorBanner from "../images/author_banner.jpg";
 import { useParams } from "react-router-dom";
 import AuthorItems from "../components/author/AuthorItems";
 
