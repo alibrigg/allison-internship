@@ -1,8 +1,8 @@
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import SellerCards from "../UI/SellerCards";
 
 const NewItems = () => {
   const [collections, setCollections] = useState([]);
@@ -41,6 +41,7 @@ const NewItems = () => {
 
   function getTimeRemaining(expiryDate) {
     const expiryTime = new Date(expiryDate).getTime();
+
     const difference = expiryTime - currentTime;
 
     if (difference <= 0) {
@@ -111,10 +112,8 @@ const NewItems = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-
     responsive: [
       {
         breakpoint: 1024,
@@ -144,51 +143,70 @@ const NewItems = () => {
     <section id="section-items" className="no-bottom">
       <div className="container">
         <div className="row">
-           <div className="col-lg-12">
+          <div className="col-lg-12">
             <div className="text-center">
               <h2>New Items</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
 
-          {loading ? (
-  <div className="skeleton__collections">
-    {[1, 2, 3, 4].map((item) => (
-      <div className="skeleton__card" key={item}>
-        <div className="skeleton skeleton__image"></div>
+          <Slider {...settings}>
+  {collections.map((data, index) => {
+    const timeRemaining = data.expiryDate
+      ? getTimeRemaining(data.expiryDate)
+      : null;
 
-        <div className="skeleton__profile-wrapper">
-          <div className="skeleton skeleton__profile"></div>
-        </div>
+    return (
+      <div key={index}>
+        <div className="nft__item">
 
-        <div className="skeleton skeleton__title"></div>
-        <div className="skeleton skeleton__text"></div>
-        <div className="skeleton skeleton__text skeleton__text--small"></div>
-      </div>
-    ))}
-  </div>
-) : (
-            <Slider {...settings}>
-
-              {collections.map((data, index) => {
-
-                const timeRemaining = data.expiryDate
-                  ? getTimeRemaining(data.expiryDate)
-                  : null;
-
-                return (
-                  <SellerCards
-                    key={index}
-                    data={data}
-                    timeRemaining={timeRemaining}
-                  />
-                );
-
-              })}
-
-            </Slider>
+          {/* Only shows if expiryDate exists */}
+          {timeRemaining && (
+            <div className="de_countdown">
+              <span className="timer__hours">
+                {timeRemaining.hours}
+              </span>
+              :
+              <span className="timer__minutes">
+                {timeRemaining.minutes}
+              </span>
+              :
+              <span className="timer__seconds">
+                {timeRemaining.seconds}
+              </span>
+            </div>
           )}
 
+          <div className="nft__item_wrap">
+            <Link to={`/item-details/${data.nftId}`}>
+              <img
+                src={data.nftImage}
+                className="lazy nft__item_preview"
+                alt=""
+              />
+            </Link>
+          </div>
+
+          <div className="nft__item_info">
+            <Link to={`/item-details/${data.nftId}`}>
+              <h4>{data.title}</h4>
+            </Link>
+
+            <div className="nft__item_price">
+              {data.price} ETH
+            </div>
+
+            <div className="nft__item_like">
+              <i className="fa fa-heart"></i>
+              <span>{data.likes}</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    );
+  })}
+</Slider>
         </div>
       </div>
     </section>

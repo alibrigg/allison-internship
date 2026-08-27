@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import AuthorItems from "../components/author/AuthorItems";
 
 const Author = () => {
