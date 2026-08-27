@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 const NewItems = () => {
   const [collections, setCollections] = useState([]);
@@ -139,7 +141,11 @@ const NewItems = () => {
     ],
   };
 
+      AOS.init();
+
+
   return (
+    <div data-aos="fade-up">
     <section id="section-items" className="no-bottom">
       <div className="container">
         <div className="row">
@@ -210,6 +216,7 @@ const NewItems = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

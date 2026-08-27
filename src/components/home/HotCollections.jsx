@@ -4,6 +4,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import "./HotCollections.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
+
 
 
 const HotCollections = () => {
@@ -87,7 +90,10 @@ function SamplePrevArrow(props) {
     ]
   };
 
+      AOS.init();
+
   return (
+         <div data-aos="fade-up">
     <section id="section-collections" className="no-bottom">
       <div className="container">
         <div className="row">
@@ -155,6 +161,7 @@ function SamplePrevArrow(props) {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

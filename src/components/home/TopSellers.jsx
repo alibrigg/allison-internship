@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "./TopSellers.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 
 const TopSellers = () => {
@@ -29,7 +31,11 @@ const TopSellers = () => {
       fetchCollections();
     }, []);
 
+        AOS.init();
+
+
   return (
+         <div data-aos="fade-up">
     <section id="section-popular" className="pb-5">
       <div className="container">
         <div className="row">
@@ -80,6 +86,7 @@ const TopSellers = () => {
         </div>
       </div>
     </section>
+    </div>
   );
 };
 

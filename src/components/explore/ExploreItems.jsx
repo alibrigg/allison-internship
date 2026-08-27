@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import SellerCards from "../UI/SellerCards";
 import "./ExploreItems.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 const ExploreItems = () => {
   const [collections, setCollections] = useState([]);
@@ -90,8 +92,11 @@ const ExploreItems = () => {
     setVisibleItems((previousItems) => previousItems + 4);
   }
 
+  AOS.init();
+
   return (
     <>
+     <div data-aos="fade-up">
       <div>
         <select
           id="filter-items"
@@ -163,6 +168,7 @@ const ExploreItems = () => {
           )}
         </>
       )}
+    </div>
     </>
   );
 };

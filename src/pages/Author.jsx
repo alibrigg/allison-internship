@@ -61,7 +61,7 @@ const [followerCount, setFollowerCount] = useState(0);
           aria-label="section"
           className="text-light"
           style={{
-            background: `url(${AuthorBanner}) top`,
+            background: `url(${author.nftCollection.find((item) => item.id === 1)?.nftImage}) top`,
           }}
         ></section>
 
